@@ -1,5 +1,6 @@
 :host {
   align-items: stretch;
+  justify-content: space-between;
 }
 
 .label-pair {
@@ -12,15 +13,7 @@ input, select {
   width: 200px;
 }
 
-.results {
-  justify-content: none;
-  position: relative;
-  bottom: 0px;
-  background-color: #282828;
-  border: inset;
-  padding: 5px;
-  border-radius: 5px;
-  height: 70%;
-  overflow: scroll;
-  color: #FFB000;
+button {
+  width: 50%;
+  margin-left: 25%;
 }

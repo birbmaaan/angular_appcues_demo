@@ -11,10 +11,10 @@ import { UtilitiesService } from '../utilities.service';
 })
 
 export class LaunchpadapiComponent implements OnInit {
-  results = "";
-  account = '';
-  user = '';
-  url = '';
+  results = '';
+  account = '85728';
+  user = '12345';
+  url = 'https://google.com';
 
   constructor(
     private launchpadService: LaunchpadService,

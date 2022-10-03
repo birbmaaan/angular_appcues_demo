@@ -1,0 +1,15 @@
+:host {
+  height: 70%;
+  overflow: hidden;
+}
+.results {
+  justify-content: none;
+
+  background-color: #282828;
+  border: inset;
+  padding: 5px;
+  border-radius: 5px;
+  height: 92%;
+  overflow: scroll;
+  color: #FFB000;
+}

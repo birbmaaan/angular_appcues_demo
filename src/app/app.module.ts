@@ -15,6 +15,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { PublicapiComponent } from './publicapi/publicapi.component';
 import { LaunchpadapiComponent } from './launchpadapi/launchpadapi.component';
 import { HomeComponent } from './home/home.component';
+import { ApiResultsComponent } from './api-results/api-results.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { HomeComponent } from './home/home.component';
     EventlogComponent,
     PublicapiComponent,
     LaunchpadapiComponent,
-    HomeComponent
+    HomeComponent,
+    ApiResultsComponent
   ],
   imports: [
     BrowserModule,
