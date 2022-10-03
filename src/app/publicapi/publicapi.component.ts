@@ -13,11 +13,10 @@ import { UtilitiesService } from '../utilities.service';
 export class PublicapiComponent implements OnInit {
   results = "";
   content = "";
-  content_id = "f896dd83-b991-40b3-9745-960c88903feb"; // flow id
-  // content_id = "-MnWyunbzYc1vXSbc4Z_"; // segment id
-  key = "a1d5dcec-ece1-4919-b0f5-4217cad4b4f2-02";
-  secret = "e49a3d72-d08b-405f-ada7-c5da1265f568";
-  account = "85728";
+  content_id = ""; 
+  key = "";
+  secret = "";
+  account = "";
   bulk = "no";
   conditions = '';
 
