@@ -1,1 +1,180 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+  /* remove all default margins and padding */
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
+  min-width: 785px;
+}
+
+app-root {
+  width: 100%;
+}
+
+body {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  height: 100%;
+  background-color: rgb(46, 67, 85);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+input {
+  padding: 5px;
+  margin: 5px 0;
+}
+
+img {
+  width: 80%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 30px;
+}
+
+/* Nav bar */
+nav {
+  width: 75px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  color: #fff;
+}
+
+nav a {
+  padding-top: 5px;
+  font-weight: 700;
+  text-decoration: none;
+  color: #fff;
+  text-align: end;
+}
+
+nav a:hover {
+  color: rgb(190, 190, 190);
+}
+
+/* Appcues Launchpad styling */
+
+#launchpad {
+  padding-top: 5px;
+  width: 25px;
+  left: calc(100% - 25px);
+}
+
+#launchpad:hover {
+  color: rgb(190, 190, 190);
+}
+
+.appcues-widget-icon {
+  font-size: 25px !important;
+  color: white;
+}
+
+.appcues-widget-dropdown {
+  border-radius: 5px;
+}
+
+
+/* Main app styling */
+
+.app-content {
+  background-color: rgb(169, 203, 226);
+  width: calc(70% - 75px);
+  height: calc(100% - 20px);
+  padding: 10px;
+  color: rgb(0, 8, 63);
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.app-content button {
+  padding: 5px 20px;
+  font-size: 14px;
+  font-weight: 700;
+  background-color: rgb(222, 222, 249);
+}
+
+.app-content button:hover {
+  background-color: rgb(205, 205, 254);
+}
+
+.app-content p {
+  padding: 5px 0;
+  width: 60%;
+  line-height: 1.2em;
+  text-align: justify;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.app-content ol {
+  padding: 5px 0px;
+  font-weight: 700;
+}
+
+.app-content li {
+  margin-left: 20px;
+  padding: 2px 5px;
+  font-weight: 500;
+  color: red;
+  list-style-type: circle;
+}
+
+.app-content h1,
+.app-content h2 {
+  text-align: center;
+  padding-bottom: 5px;
+}
+
+.app-content p {
+  font-family: "Nunito Sans";
+}
+
+.property-setter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.property-setter>* {
+  width: 250px;
+}
+
+#events-log {
+  background-color: #282828;
+  border: inset;
+  border-radius: 5px;
+  height: 50%;
+  overflow: scroll;
+}
+
+#events-log li {
+  margin-left: 25px;
+  font-weight: 700;
+  padding-top: 5px;
+  /* color: #d3f9d3; */
+  color: #FFB000;
+}
+
+#events-log p {
+  color: #66FF66;
+  margin-left: 5px;
+}
+
+.results {
+  overflow: scroll;
+}

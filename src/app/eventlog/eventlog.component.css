@@ -1,0 +1,30 @@
+
+
+h2 {
+  height: 4%;
+}
+
+button {
+  height: 4%;
+}
+
+ol {
+  background-color: #282828;
+  border: inset;
+  border-radius: 5px;
+  height: 50%;
+  overflow: scroll;
+}
+
+ol li {
+  margin-left: 40px;
+  font-weight: 700;
+  padding-top: 5px;
+  /* color: #d3f9d3; */
+  color: #FFB000;
+}
+
+p {
+  color: #66FF66;
+  margin-left: 5px;
+}

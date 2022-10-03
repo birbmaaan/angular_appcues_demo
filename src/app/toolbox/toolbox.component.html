@@ -1,0 +1,13 @@
+<h2>The Appcues Toolbox</h2>
+<ul>
+  <li>
+    <h3 for="show-flow">Enter ID and click "Appcues.show" to launch Appcues content</h3>
+    <input #content placeholder="-AbCdEf-12345" id="show-flow" type="text" />
+    <button (click)="showFlow(content.value); content.value=''">Appcues.show()</button>
+  </li>
+  <li><button (click)="clearShow()">Appcues.clear()</button></li>
+  <li><button (click)="anonymousUser()">Appcues.anonymous()</button></li>
+  <li><button (click)="openDebugger()">Appcues.debug()</button></li>
+  <li><button (click)="resetAppcues()">Appcues.reset()</button></li>
+</ul>
+<app-eventlog></app-eventlog>

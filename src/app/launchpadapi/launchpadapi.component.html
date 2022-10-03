@@ -1,0 +1,17 @@
+<h2>Request:</h2>
+
+<div class="label-pair">
+  <label for="account-id">Enter the account ID:</label>
+  <input id="account-id" [(ngModel)]="account" />
+</div>
+<div class="label-pair">
+  <label for="user-id">Enter the user ID of a user in the account</label>
+  <input id="user-id" [(ngModel)]="user" />
+</div>
+<div class="label-pair">
+  <label for="test-url">Enter a URL to check what flows a user should see in the Launchpad</label>
+  <input id="test-url" [(ngModel)]="url" />
+</div>
+<button (click)="fetchResults()">Fetch Results</button>
+<h2>Response:</h2>
+<div class="results" [innerHTML]='results'></div>

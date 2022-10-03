@@ -1,0 +1,41 @@
+/* Appcues Toolbar */
+
+:host {
+  width: 30%;
+  padding: 10px;
+  color: #fff;
+}
+
+input {
+  width: calc(100% - 14px);
+  margin: 5px 0;
+}
+
+:host ::ng-deep button {
+  background-color: rgb(16, 140, 197);
+  color: #fff;
+  font-weight: 700;
+  margin: 5px 0;
+  padding: 2px 10px;
+  width: 100%;
+}
+
+:host ::ng-deep button:hover {
+  background-color: rgb(14, 114, 160)
+}
+
+:host ::ng-deep h2 {
+  text-align: center;
+  height: 7%;
+  padding-bottom: 5px;
+  text-decoration: underline;
+}
+
+:host ::ng-deep ul {
+  height: 33%;
+
+}
+
+:host ::ng-deep ul li {
+  list-style-type: none;
+}

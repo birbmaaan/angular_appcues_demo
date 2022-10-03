@@ -1,0 +1,53 @@
+<h2>Request:</h2>
+
+<div class="label-pair">
+  <label for="bulk-export">Is this a bulk export?</label>
+  <select id="bulk-export" [(ngModel)]="bulk">
+    <option value="yes">yes</option>
+    <option value="no">no</option>
+  </select>
+</div>
+
+<div class="request-body" *ngIf="bulk === 'no'">
+  <div class="api-info">
+    <div class="label-pair">
+      <label for="api-key">Enter your API key here:</label>
+      <input id="api-key"[(ngModel)]="key" >
+    </div>
+    <div class="label-pair">
+      <label for="api-secret">Enter your API secret here:</label>
+      <input id="api-secret" [(ngModel)]="secret" >
+    </div>
+    <div class="label-pair">
+      <label for="account-id">Account ID:</label>
+      <input id="account-id" [(ngModel)]="account" >
+    </div>
+  </div>
+  
+  <div class="label-pair">
+    <label for="content-type">I would like to make a request for:</label>
+    <select id="content-type" [(ngModel)]="content" >
+      <option value="flow">one flow</option>
+      <option value="flows">all flows</option>
+      <option value="segment">one segment</option>
+      <option value="segments">all segments</option>
+      <option value="user">one user</option>
+      <option value="jobs">recent jobs</option>
+      <option value="job">one job</option>
+    </select>
+  </div>
+  <div class="label-pair" *ngIf="content == 'user' || content == 'flow' || content == 'segment' ">
+      <label >What is the ID of the {{content}}?</label>
+      <input id="content-id" [(ngModel)]='content_id'>
+  </div>
+</div>
+
+<div class="request-body" *ngIf="bulk === 'yes'">
+  <label>This page under construction</label>
+  <!-- <label >Enter conditions here</label>
+    <input id="conditions" [(ngModel)]="conditions"> -->
+  </div>
+  
+<button *ngIf="content && bulk === 'no'" (click)="getData()">Make Request</button>
+<h2>Response:</h2>
+<div class="results" [innerHTML]='results'></div>
