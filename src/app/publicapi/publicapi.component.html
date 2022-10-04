@@ -1,31 +1,31 @@
 <div>
   <h2>Request:</h2>
+  <div class="api-info">
+    <div class="label-pair">
+      <label for="api-key">Enter your API key here:</label>
+      <input id="api-key"[(ngModel)]="apiInfo.key" >
+    </div>
+    <div class="label-pair">
+      <label for="api-secret">Enter your API secret here:</label>
+      <input id="api-secret" [(ngModel)]="apiInfo.secret" >
+    </div>
+    <div class="label-pair">
+      <label for="account-id">Account ID:</label>
+      <input id="account-id" [(ngModel)]="apiInfo.account" >
+    </div>
+  </div>
   <div class="label-pair">
     <label for="bulk-export">Is this a bulk export?</label>
-    <select id="bulk-export" [(ngModel)]="bulk">
-      <option value="yes">yes</option>
-      <option value="no">no</option>
+    <select id="bulk-export" [(ngModel)]="apiInfo.bulk">
+      <option value="true">yes</option>
+      <option value="false">no</option>
     </select>
   </div>
-  <div class="request-body" *ngIf="bulk === 'no'">
-    <div class="api-info">
-      <div class="label-pair">
-        <label for="api-key">Enter your API key here:</label>
-        <input id="api-key"[(ngModel)]="key" >
-      </div>
-      <div class="label-pair">
-        <label for="api-secret">Enter your API secret here:</label>
-        <input id="api-secret" [(ngModel)]="secret" >
-      </div>
-      <div class="label-pair">
-        <label for="account-id">Account ID:</label>
-        <input id="account-id" [(ngModel)]="account" >
-      </div>
-    </div>
-    
+  
+  <div class="request-body" *ngIf="apiInfo.bulk === false">
     <div class="label-pair">
       <label for="content-type">I would like to make a request for:</label>
-      <select id="content-type" [(ngModel)]="content" >
+      <select id="content-type" [(ngModel)]="apiInfo.content" >
         <option value="flow">one flow</option>
         <option value="flows">all flows</option>
         <option value="segment">one segment</option>
@@ -35,18 +35,60 @@
         <option value="job">one job</option>
       </select>
     </div>
-    <div class="label-pair" *ngIf="content == 'user' || content == 'flow' || content == 'segment' ">
-      <label >What is the ID of the {{content}}?</label>
-      <input id="content-id" [(ngModel)]='content_id'>
+    <div class="label-pair" *ngIf="apiInfo.content == 'user' || apiInfo.content == 'flow' || apiInfo.content == 'segment' ">
+      <label >What is the ID of the {{apiInfo.content}}?</label>
+      <input id="content-id" [(ngModel)]='apiInfo.content_id'>
     </div>
   </div>
   
-  <div class="request-body" *ngIf="bulk === 'yes'">
-    <label>This page under construction</label>
-    <!-- <label >Enter conditions here</label>
-      <input id="conditions" [(ngModel)]="conditions"> -->
+  <div class="request-body" *ngIf="apiInfo.bulk === true">
+    <!-- <label>This page under construction</label> -->
+    <h3>Enter parameters here</h3>
+    <div class="label-pair">
+      <label for="email">Email: </label>
+      <input id="email" [(ngModel)]="parameters.email" > 
     </div>
+    <div class="label-pair">
+      <label for="format">Format: </label>
+      <input id="format" [(ngModel)]="parameters.format" > 
+    </div>
+    <div class="label-pair">
+      <label for="start-time">Start Time: </label>
+      <input id="start-time" [(ngModel)]="parameters.start_time" > 
+    </div>
+    <div class="label-pair">
+      <label for="end-time">End Time (optional): </label>
+      <input id="end-time" [(ngModel)]="parameters.end_time" > 
+    </div>
+    <div class="label-pair">
+      <label for="timezone">Timezone (optional): </label>
+      <input id="timezone" [(ngModel)]="parameters.timezone" > 
+    </div>
+    <div class="label-pair">
+      <label for="limit">Limit (optional): </label>
+      <input id="limit" [(ngModel)]="parameters.limit" > 
+    </div>
+    <div class="label-pair">
+      <label for="offset">Offset (optional. Please use UTC): </label>
+      <input id="offset" [(ngModel)]="parameters.offset" > 
+    </div>
+    <div>
+      <label for="">Enter conditions below:</label>
+      <input id="conditions-one" [(ngModel)]="apiInfo.condition_one[0]">
+      <input id="conditions-two" [(ngModel)]="apiInfo.condition_one[1]">
+      <input id="conditions-three" [(ngModel)]="apiInfo.condition_one[2]">
+      <button (click)="addCondition()">Add condition</button>
+      <button (click)="removeCondition()">Remove last condition</button>
+      <button (click)="clearConditions()">Clear all conditions</button>
+      <button (click)="clearForm()">Reset entire form</button>
+    </div>
+    <div *ngFor="let condition of parameters.conditions">
+      {{condition[0]}} {{condition[1]}} {{condition[2]}}
+    </div>
+  </div>
     
-    <button *ngIf="content && bulk === 'no'" (click)="getData()">Make Request</button>
-</div>
-<app-api-results [results]="results"></app-api-results>
+  <!-- <button *ngIf="content && bulk === 'no'" (click)="getData()">Make Request</button> -->
+  <button *ngIf="apiInfo.bulk === true" (click)="bulkRequest()">Make Request</button>
+  <button *ngIf="apiInfo.bulk === false" (click)="getData()">Make Request</button>
+  </div>
+<app-api-results [results]="apiInfo.results"></app-api-results>

@@ -12,9 +12,9 @@ import { UtilitiesService } from '../utilities.service';
 
 export class LaunchpadapiComponent implements OnInit {
   results = '';
-  account = '85728';
-  user = '12345';
-  url = 'https://google.com';
+  account = '';
+  user = '';
+  url = '';
 
   constructor(
     private launchpadService: LaunchpadService,

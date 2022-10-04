@@ -16,6 +16,7 @@ const routes: Routes = [
   { path: 'publicapi', component: PublicapiComponent },
   { path: 'launchpadapi', component: LaunchpadapiComponent },
   { path: 'dashboard', component: HomeComponent },
+  { path: '', component: HomeComponent},
 ];
 
 @NgModule({

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { PublicapiService } from '../publicapi.service';
 import { UtilitiesService } from '../utilities.service'; 
+import { Parameters } from '../interfaces/parameters';
+import { ApiInfo } from '../interfaces/api-info';
 
 @Component({
   selector: 'app-publicapi',
@@ -11,14 +13,23 @@ import { UtilitiesService } from '../utilities.service';
 })
 
 export class PublicapiComponent implements OnInit {
-  results = "";
-  content = "";
-  content_id = ""; 
-  key = "";
-  secret = "";
-  account = "";
-  bulk = "no";
-  conditions = '';
+  
+  apiInfo: ApiInfo = {
+    key: "",
+    secret: "",
+    account: "", 
+    results: "",
+    content: "",
+    content_id: "", 
+    bulk: true,
+    condition_one: ["","",""]
+  }
+  parameters: Parameters = {
+    email: "",
+    format: 'csv',
+    start_time: "YYYY-MM-DD",
+    conditions: []
+  }
 
   constructor(
     private apiService: PublicapiService,
@@ -29,9 +40,41 @@ export class PublicapiComponent implements OnInit {
   }
 
   getData(): void {
-    this.apiService.get(this.key, this.secret, this.account, this.content, this.content_id, this.conditions)
+    this.apiService.get(this.apiInfo)
       .subscribe(response => {
-        this.results = this.utilities.parseData(response)
+        this.apiInfo.results = this.utilities.parseData(response)
       })
+  }
+
+  bulkRequest(): void {
+    this.apiInfo.results = this.apiService.makeBulk(this.apiInfo, this.parameters)
+  }
+
+  addCondition(): void {
+    this.parameters.conditions.push(this.apiInfo.condition_one);
+    this.apiInfo.condition_one = ['', '', ''];
+    console.log(this.parameters.conditions);
+  }
+
+  clearConditions(): void {
+    this.parameters.conditions = [];
+    this.apiInfo.condition_one = ['', '', ''];
+  }
+
+  removeCondition(): void {
+    this.parameters.conditions.pop();
+  }
+
+  clearForm(): void {
+    this.apiInfo.content = "";
+    this.apiInfo.content_id = ""; 
+    this.apiInfo.condition_one = ["","",""];
+    this.apiInfo.key = "";
+    this.apiInfo.secret = "";
+    this.apiInfo.account = "";
+    this.parameters.email = "";
+    this.parameters.format = 'csv';
+    this.parameters.start_time = "YYYY-MM-DD";
+    this.parameters.conditions = [];
   }
 }

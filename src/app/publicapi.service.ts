@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { ApiInfo } from './interfaces/api-info';
+import { Parameters } from './interfaces/parameters';
 
 @Injectable({
   providedIn: 'root'
@@ -11,44 +13,43 @@ export class PublicapiService {
     private http: HttpClient
   ) { }
 
-  get(
-    key: string, 
-    secret: string, 
-    account: string, 
-    content: string, 
-    content_id: string,
-    conditions: string
-    ): Observable<any> {
+  get(info: ApiInfo): Observable<any> {
   
-    const token = Buffer.from(`${key}:${secret}`).toString('base64');
+    const token = Buffer.from(`${info.key}:${info.secret}`).toString('base64');
     var url = "";
 
-    const httpOptions = { 
+    var httpOptions = { 
       headers: new HttpHeaders({
         'Authorization': `Basic ${token}`
-      }),
-      params: new HttpParams({
       })
     }
 
-    if (conditions !== "") {
-      url = `https://api.appcues.com/v2/accounts/${account}/export/events`;
-      httpOptions.headers.set('content-type', 'application/json');
-      httpOptions.params.append("email", "elijah@appcues.com");
-      httpOptions.params.append("format", "csv");
-      httpOptions.params.append("conditions", '[]');
-      httpOptions.params.append("start_time", '2022-09-29');
-
-    } else if (this.isPlural(content)) {
-      url = `https://api.appcues.com/v2/accounts/${account}/${content}`;
-    } else if (content === "user") {
-      url = `https://api.appcues.com/v2/accounts/${account}/${content}s/${content_id}/profile`
+    if (this.isPlural(info.content)) {
+      url = `https://api.appcues.com/v2/accounts/${info.account}/${info.content}`;
+    } else if (info.content === "user") {
+      url = `https://api.appcues.com/v2/accounts/${info.account}/${info.content}s/${info.content_id}/profile`
     } else {
-      url = `https://api.appcues.com/v2/accounts/${account}/${content}s/${content_id}`
+      url = `https://api.appcues.com/v2/accounts/${info.account}/${info.content}s/${info.content_id}`
+    }
+    
+    return this.http.get<any>(url, httpOptions)
+  }
+
+  makeBulk(info: ApiInfo, params: Parameters): string {
+    var url = `https://api.appcues.com/v2/accounts/${info.account}/export/events`;
+    const token = Buffer.from(`${info.key}:${info.secret}`).toString('base64');
+
+    var httpOptions = {
+      headers: new HttpHeaders({
+      'Authorization': `Basic ${token}`,
+      'content-type': 'application/json'
+      })
     }
 
-
-    return this.http.get<any>(url, httpOptions)
+    console.log('posting request')
+    this.http.post<any>(url, params, httpOptions)
+      .subscribe(response => console.log(response));
+    return "data requested. Check your email!";
   }
 
   isPlural(content: string): boolean {
