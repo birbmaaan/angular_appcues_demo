@@ -17,8 +17,8 @@
   <div class="label-pair">
     <label for="bulk-export">Is this a bulk export?</label>
     <select id="bulk-export" [(ngModel)]="apiInfo.bulk">
-      <option value="true">yes</option>
-      <option value="false">no</option>
+      <option [ngValue]="true">yes</option>
+      <option [ngValue]="false">no</option>
     </select>
   </div>
   
