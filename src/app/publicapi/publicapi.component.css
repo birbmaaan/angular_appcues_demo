@@ -33,9 +33,13 @@ label {
   margin-left: 0px;
 }
 
-.conditions-block input {
-  width: calc(33% - 1px);
-  margin: 1px;
+.conditions-block input:first-child, .conditions-block input:nth-child(3) {
+  width: 40%;
+}
+
+.conditions-block input:nth-child(2) {
+  width: 5%;
+  margin: 1px 5px;
 }
 
 li {
