@@ -42,7 +42,6 @@
   </div>
   
   <div class="request-body" *ngIf="apiInfo.bulk === true">
-    <!-- <label>This page under construction</label> -->
     <h3>Enter parameters here</h3>
     <div class="label-pair">
       <label for="email">Email: </label>
@@ -72,8 +71,13 @@
       <label for="offset">Offset (optional. Please use UTC): </label>
       <input id="offset" [(ngModel)]="parameters.offset" > 
     </div>
-    <div>
-      <label for="">Enter conditions below:</label>
+    <h4>Current conditions:</h4>
+    <div *ngIf="!parameters.conditions.length">-no conditions yet-</div>
+    <li *ngFor="let condition of parameters.conditions">
+      {{condition[0]}} {{condition[1]}} {{condition[2]}}
+    </li>
+    <label for="">Enter conditions below:</label>
+    <div class="conditions-block">
       <input id="conditions-one" [(ngModel)]="apiInfo.condition_one[0]">
       <input id="conditions-two" [(ngModel)]="apiInfo.condition_one[1]">
       <input id="conditions-three" [(ngModel)]="apiInfo.condition_one[2]">
@@ -81,9 +85,6 @@
       <button (click)="removeCondition()">Remove last condition</button>
       <button (click)="clearConditions()">Clear all conditions</button>
       <button (click)="clearForm()">Reset entire form</button>
-    </div>
-    <div *ngFor="let condition of parameters.conditions">
-      {{condition[0]}} {{condition[1]}} {{condition[2]}}
     </div>
   </div>
     

@@ -27,7 +27,7 @@ export class PublicapiComponent implements OnInit {
   parameters: Parameters = {
     email: "",
     format: 'csv',
-    start_time: "YYYY-MM-DD",
+    start_time: "YYY-MM-DD",
     conditions: []
   }
 

@@ -27,3 +27,12 @@ label {
   flex-direction: rows;
   align-items: flex-end;
 }
+
+.conditions-block button {
+  width: 25%;
+  margin-left: 0px;
+}
+
+li {
+  color: black;
+}
