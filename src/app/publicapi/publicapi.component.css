@@ -33,6 +33,11 @@ label {
   margin-left: 0px;
 }
 
+.conditions-block input {
+  width: calc(33% - 1px);
+  margin: 1px;
+}
+
 li {
   color: black;
 }
