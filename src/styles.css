@@ -27,6 +27,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+button {
+  border-radius: 5px;
+}
+
 button:hover {
   cursor: pointer;
 }

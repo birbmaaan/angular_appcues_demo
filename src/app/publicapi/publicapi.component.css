@@ -4,19 +4,23 @@
   justify-content: space-between;
 }
 
+.api-info .label-pair:nth-child(odd), 
+.request-body .label-pair:nth-child(even),
+.request-body li:nth-child(odd) {
+  background-color:rgb(111, 180, 226);
+  border-radius: 5px;
+  padding: 5px;
+}
+
 .label-pair {
   display: flex;
   justify-content: space-between;
-  padding: 5px 0px;
+  border-radius: 5px;
+  padding: 0px 5px;
 }
 
 input, select {
   width: 50%;
-}
-
-button {
-  width: 50%;
-  margin-left: 25%;
 }
 
 label {
@@ -29,9 +33,16 @@ label {
   align-items: flex-end;
 }
 
+.conditions-block {
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+  display: flex;
+}
+
 .conditions-block button {
-  width: 25%;
-  margin-left: 0px;
+  width: 30%;
+  margin-top: 5px;
 }
 
 .conditions-block input:first-child, .conditions-block input:nth-child(3) {
@@ -40,9 +51,25 @@ label {
 
 .conditions-block input:nth-child(2) {
   width: 5%;
-  margin: 1px 5px;
 }
 
 li {
   color: black;
+}
+
+.form-reset-request {
+  position: absolute;
+  left: 0;
+  top: 300px;
+  width: 75px;
+}
+
+.form-reset-request button {
+  margin: 5px 7px;
+  width: 100%;
+  padding: 5px; 
+}
+
+h4, h3 {
+  padding: 5px;
 }

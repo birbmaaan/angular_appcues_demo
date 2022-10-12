@@ -42,7 +42,7 @@
   </div>
   
   <div class="request-body" *ngIf="apiInfo.bulk === true">
-    <h3>Enter parameters here</h3>
+    <h3>Parameters:</h3>
     <div class="label-pair">
       <label for="email">Email: </label>
       <input id="email" [(ngModel)]="parameters.email" > 
@@ -71,25 +71,28 @@
       <label for="offset">Offset (optional. Please use UTC): </label>
       <input id="offset" [(ngModel)]="parameters.offset" > 
     </div>
-    <h4>Current conditions:</h4>
-    <div *ngIf="!parameters.conditions.length">-no conditions yet-</div>
-    <li *ngFor="let condition of parameters.conditions">
-      {{condition[0]}} {{condition[1]}} {{condition[2]}}
-    </li>
-    <label for="">Enter conditions below:</label>
+    <h3>Current conditions:</h3>
+    <ul>
+      <li *ngIf="!parameters.conditions.length">-no conditions yet-</li>
+      <li *ngFor="let condition of parameters.conditions">
+        {{condition[0]}} {{condition[1]}} {{condition[2]}}
+      </li>
+    </ul>
+    <h3>Enter conditions:</h3>
     <div class="conditions-block">
       <input id="conditions-one" [(ngModel)]="apiInfo.condition_one[0]">
       <input id="conditions-two" [(ngModel)]="apiInfo.condition_one[1]">
       <input id="conditions-three" [(ngModel)]="apiInfo.condition_one[2]">
-      <button (click)="addCondition()">Add condition</button>
-      <button (click)="removeCondition()">Remove last condition</button>
       <button (click)="clearConditions()">Clear all conditions</button>
-      <button (click)="clearForm()">Reset entire form</button>
+      <button (click)="removeCondition()">Remove last condition</button>
+      <button (click)="addCondition()">Add condition</button>
     </div>
   </div>
-    
-  <!-- <button *ngIf="content && bulk === 'no'" (click)="getData()">Make Request</button> -->
-  <button *ngIf="apiInfo.bulk === true" (click)="bulkRequest()">Make Request</button>
-  <button *ngIf="apiInfo.bulk === false" (click)="getData()">Make Request</button>
+  
+  <div class="form-reset-request">
+    <button *ngIf="apiInfo.bulk === true" (click)="bulkRequest()">Make Request</button>
+    <button *ngIf="apiInfo.bulk === false" (click)="getData()">Make Request</button>
+    <button (click)="clearForm()">Reset entire form</button>
   </div>
+</div>
 <app-api-results [results]="apiInfo.results"></app-api-results>
