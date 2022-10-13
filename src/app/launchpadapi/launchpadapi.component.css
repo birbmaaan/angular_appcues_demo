@@ -23,3 +23,15 @@ button {
   width: 50%;
   margin-left: 25%;
 }
+.form-request {
+  position: absolute;
+  left: 0;
+  top: 300px;
+  width: 75px;
+}
+
+.form-request button {
+  margin: 5px 7px;
+  width: 100%;
+  padding: 5px;
+}

@@ -41,4 +41,10 @@ export class LaunchpadapiComponent implements OnInit {
       this.url = id;
     }
   }
+
+  clearForm(): void {
+    this.account = '';
+    this.user = '';
+    this.url = '';
+  }
 }

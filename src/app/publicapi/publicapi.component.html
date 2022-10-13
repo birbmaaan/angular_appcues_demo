@@ -35,7 +35,7 @@
         <option value="job">one job</option>
       </select>
     </div>
-    <div class="label-pair" *ngIf="apiInfo.content == 'user' || apiInfo.content == 'flow' || apiInfo.content == 'segment' ">
+    <div class="label-pair" *ngIf="!apiService.isPlural(apiInfo.content)">
       <label >What is the ID of the {{apiInfo.content}}?</label>
       <input id="content-id" [(ngModel)]='apiInfo.content_id'>
     </div>
@@ -90,8 +90,8 @@
   </div>
   
   <div class="form-reset-request">
-    <button *ngIf="apiInfo.bulk === true" (click)="bulkRequest()">Make Request</button>
-    <button *ngIf="apiInfo.bulk === false" (click)="getData()">Make Request</button>
+    <button [style.background-color]="requestReady()" *ngIf="apiInfo.bulk === true" (click)="bulkRequest()">Makee Request</button>
+    <button [style.background-color]="requestReady()" *ngIf="apiInfo.bulk === false" (click)="getData()">Make Request</button>
     <button (click)="clearForm()">Reset entire form</button>
   </div>
 </div>

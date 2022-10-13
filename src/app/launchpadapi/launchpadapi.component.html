@@ -12,6 +12,9 @@
     <label for="test-url">Enter a URL to check what flows a user should see in the Launchpad</label>
     <input id="test-url" [(ngModel)]="url" />
   </div>
-  <button (click)="fetchResults()">Make Request</button>
+  <div class="form-request">
+    <button (click)="fetchResults()">Make Request</button>
+    <button (click)="clearForm()">Clear Form</button>
+  </div>
 </div>
 <app-api-results [results]="results"></app-api-results>

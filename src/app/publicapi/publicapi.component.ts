@@ -27,12 +27,12 @@ export class PublicapiComponent implements OnInit {
   parameters: Parameters = {
     email: "",
     format: 'csv',
-    start_time: "YYY-MM-DD",
+    start_time: "2022-10-01",
     conditions: []
   }
 
   constructor(
-    private apiService: PublicapiService,
+    public apiService: PublicapiService,
     private utilities: UtilitiesService
   ) { }
 
@@ -76,5 +76,36 @@ export class PublicapiComponent implements OnInit {
     this.parameters.format = 'csv';
     this.parameters.start_time = "YYYY-MM-DD";
     this.parameters.conditions = [];
+  }
+
+  requestReady(): string {
+
+    var isReady = "";
+    var contentType = this.apiInfo.content.split('');
+
+    if (this.apiInfo.key === '' || this.apiInfo.secret === '' || this.apiInfo.account === '') {
+      isReady = 'purple';
+    }
+
+    if (this.apiInfo.bulk === false) {
+      if (this.apiInfo.content_id === "" && !this.apiService.isPlural(this.apiInfo.content)) {
+        isReady = 'purple';
+      }
+
+      if (this.apiInfo.content === '') {
+        isReady = 'purple';
+      }
+    } else {
+      if (this.parameters.email === '' || this.parameters.format === '' ) {
+        isReady = 'purple';
+      }
+    }
+
+    Object.values(this.parameters).forEach(val => {
+      if (val === '' || val === 'YYYY-MM-DD') {
+        isReady = 'purple';
+      }
+    })
+    return isReady;
   }
 }
