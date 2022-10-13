@@ -90,7 +90,7 @@
   </div>
   
   <div class="form-reset-request">
-    <button [style.background-color]="requestReady()" *ngIf="apiInfo.bulk === true" (click)="bulkRequest()">Makee Request</button>
+    <button [style.background-color]="requestReady()" *ngIf="apiInfo.bulk === true" (click)="bulkRequest()">Make Request</button>
     <button [style.background-color]="requestReady()" *ngIf="apiInfo.bulk === false" (click)="getData()">Make Request</button>
     <button (click)="clearForm()">Reset entire form</button>
   </div>

@@ -27,7 +27,7 @@ export class PublicapiComponent implements OnInit {
   parameters: Parameters = {
     email: "",
     format: 'csv',
-    start_time: "2022-10-01",
+    start_time: "YYYY-MM-DD",
     conditions: []
   }
 
@@ -99,13 +99,13 @@ export class PublicapiComponent implements OnInit {
       if (this.parameters.email === '' || this.parameters.format === '' ) {
         isReady = 'purple';
       }
+      Object.values(this.parameters).forEach(val => {
+        if (val === '' || val === 'YYYY-MM-DD') {
+          isReady = 'purple';
+        }
+      })
     }
 
-    Object.values(this.parameters).forEach(val => {
-      if (val === '' || val === 'YYYY-MM-DD') {
-        isReady = 'purple';
-      }
-    })
     return isReady;
   }
 }
