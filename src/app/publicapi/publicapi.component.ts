@@ -4,6 +4,7 @@ import { PublicapiService } from '../publicapi.service';
 import { UtilitiesService } from '../utilities.service'; 
 import { Parameters } from '../interfaces/parameters';
 import { ApiInfo } from '../interfaces/api-info';
+import { tap, catchError } from 'rxjs';
 
 @Component({
   selector: 'app-publicapi',
@@ -39,15 +40,19 @@ export class PublicapiComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  getData(): void {
-    this.apiService.get(this.apiInfo)
-      .subscribe(response => {
-        this.apiInfo.results = this.utilities.parseData(response)
+  requestData(): void {
+    const api = this;
+    this.apiInfo.results = "Requesting your data..."
+    this.apiService.makeRequest(this.apiInfo, this.parameters)
+      .subscribe({
+        next(response) {
+          api.apiInfo.results = api.utilities.parseData(response)
+        },
+        error(error) {
+          let errorMessage = api.utilities.parseData(error); 
+          api.apiInfo.results = 'Something went wrong. <br>Please check your request and try again: <br><br>' + errorMessage;
+        }
       })
-  }
-
-  bulkRequest(): void {
-    this.apiInfo.results = this.apiService.makeBulk(this.apiInfo, this.parameters)
   }
 
   addCondition(): void {
@@ -76,6 +81,10 @@ export class PublicapiComponent implements OnInit {
     this.parameters.format = 'csv';
     this.parameters.start_time = "YYYY-MM-DD";
     this.parameters.conditions = [];
+  }
+
+  clearResults(): void {
+    this.apiInfo.results = "";
   }
 
   requestReady(): string {

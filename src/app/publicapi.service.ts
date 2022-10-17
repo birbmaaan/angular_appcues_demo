@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams, HttpRequest } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { catchError, Observable, tap, throwError } from 'rxjs';
 import { ApiInfo } from './interfaces/api-info';
 import { Parameters } from './interfaces/parameters';
 
@@ -12,6 +12,14 @@ export class PublicapiService {
   constructor(
     private http: HttpClient
   ) { }
+
+  makeRequest(info: ApiInfo, params: Parameters): Observable<any> {
+    if (info.bulk === true) {
+      return this.makeBulk(info, params)
+    } else {
+      return this.get(info)
+    }
+  }
 
   get(info: ApiInfo): Observable<any> {
   
@@ -32,10 +40,11 @@ export class PublicapiService {
       url = `https://api.appcues.com/v2/accounts/${info.account}/${info.content}s/${info.content_id}`
     }
     
+    console.log(`making a request for the ${info.content}`)
     return this.http.get<any>(url, httpOptions)
   }
 
-  makeBulk(info: ApiInfo, params: Parameters): string {
+  makeBulk(info: ApiInfo, params: Parameters): Observable<any> {
     var url = `https://api.appcues.com/v2/accounts/${info.account}/export/events`;
     const token = Buffer.from(`${info.key}:${info.secret}`).toString('base64');
 
@@ -46,10 +55,7 @@ export class PublicapiService {
       })
     }
 
-    console.log('posting request')
-    this.http.post<any>(url, params, httpOptions)
-      .subscribe(response => console.log(response));
-    return "data requested. Check your email!";
+    return this.http.post<any>(url, params, httpOptions)
   }
 
   isPlural(content: string): boolean {
@@ -65,4 +71,5 @@ export class PublicapiService {
 
     return false;
   }
+
 }
